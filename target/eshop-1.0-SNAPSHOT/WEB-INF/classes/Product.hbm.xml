@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.eshop.domain.Product" table="product" schema="shop">
+        <id name="id">
+            <column name="id" sql-type="int"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="decimal(8,2)" precision="8" scale="2" not-null="true"/>
+        </property>
+        <property name="pic">
+            <column name="pic" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="remark">
+            <column name="remark" sql-type="longtext" not-null="true"/>
+        </property>
+        <property name="xremark">
+            <column name="xremark" sql-type="longtext" not-null="true"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="commend">
+            <column name="commend" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+        <property name="open">
+            <column name="open" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+
+        <many-to-one name="category" class="com.example.eshop.domain.Category" fetch="select" lazy="false">
+            <column name="cid"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

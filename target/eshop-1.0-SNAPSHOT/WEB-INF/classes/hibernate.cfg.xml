@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!--&lt;!&ndash; 第一部分 配置数据库信息（驱动，url,name,password），必须 &ndash;&gt;
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/shop?serverTimezone=Asia/Shanghai</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>-->
+
+        <!-- 第二部分 配置hibernate，可选 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> <!-- 数据库方言 -->
+        <property name="hibernate.show_sql">true</property> <!-- 显示执行的SQL语句 -->
+        <property name="hibernate.format_sql">true</property> <!-- 格式化SQL语句 -->
+        <property name="current_session_context_class">thread</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property> <!-- 开启二级缓存 -->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> <!-- 指定缓存框架 -->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/shop</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> <!-- 开启查询缓存 -->
+
+        <!-- 第三部分 配置mapping -->
+        <!-- (1)使用 xxx.hbm.xml 配置文件 -->
+        <mapping resource="Category.hbm.xml"/>
+        <mapping resource="Account.hbm.xml"/>
+        <mapping resource="Product.hbm.xml"/>
+        <mapping resource="Forder.hbm.xml"/>
+        <mapping resource="Sorder.hbm.xml"/>
+        <mapping resource="Status.hbm.xml"/>
+        <mapping resource="User.hbm.xml"/>
+        <!-- (2)使用注解 -->
+        <!--<mapping class="com.example.eshop.domain.Account"/>
+        <mapping class="com.example.eshop.domain.Category"/>-->
+
+        <!-- 指定哪些类要加入二级缓存 -->
+        <class-cache usage="read-write" class="com.example.eshop.domain.Product"/>
+        <class-cache usage="read-write" class="com.example.eshop.domain.Category"/>
+        <class-cache usage="read-write" class="com.example.eshop.domain.Account"/>
+        <!-- 集合缓存 -->
+        <!--<collection-cache usage="read-only" collection="reflect_one_many.Major.stu"/>-->
+    </session-factory>
+</hibernate-configuration>
