@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.eshop.domain.Category" table="category" schema="shop">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="type" column="type"/>
+        <property name="hot" column="hot"/>
+        <many-to-one name="account" class="com.example.eshop.domain.Account" fetch="select" lazy="false">
+            <column name="account_id"/>
+        </many-to-one>
+<!--        <set name="products" inverse="true" lazy="false">-->
+<!--            <key>-->
+<!--                <column name="cid"></column>-->
+<!--            </key>-->
+<!--            <one-to-many class="com.example.eshop.domain.Product"></one-to-many>-->
+<!--        </set>-->
+    </class>
+</hibernate-mapping>
